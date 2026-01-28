@@ -1,56 +1,37 @@
-# California Housing Price Prediction Project
+# California Housing Price Prediction: Comparative Analysis
 
-## Overview
-This project focuses on predicting housing prices in California using a dataset from scikit-learn. The goal is to build a machine learning model that can accurately estimate house prices based on various features such as median income, house age, average rooms, and location coordinates.
+## Description
+This project implements and compares multiple machine learning regression models to predict median house values in California districts. Using the California Housing dataset, the study evaluates the effectiveness of linear models versus ensemble-based methods in capturing complex spatial and economic relationships.
 
 ## Dataset
-The dataset used is the `fetch_california_housing` dataset from scikit-learn, which contains the following features:
-- MedInc: Median income in block group
-- HouseAge: Median house age in block group
-- AveRooms: Average number of rooms per household
-- AveBedrms: Average number of bedrooms per household
-- Population: Block group population
-- AveOccup: Average number of household members
-- Latitude: Block group latitude
-- Longitude: Block group longitude
-- Target variable: price (median house value)
+The project utilizes the California Housing dataset fetched from Scikit-Learn. The dataset includes 20,640 samples with 8 features:
+* MedInc: Median income in block group
+* HouseAge: Median house age in block group
+* AveRooms: Average number of rooms per household
+* AveBedrms: Average number of bedrooms per household
+* Population: Block group population
+* AveOccup: Average number of household members
+* Latitude and Longitude: District location coordinates.
 
-## Project Structure
-The project is organized in a Jupyter notebook (`california_housing.ipynb`) with the following steps:
+## Methodology
+The following preprocessing and modeling steps were implemented:
+1. Data Visualization: Correlation heatmaps were used to identify relationships between features.
+2. Feature Scaling: Standardized features using StandardScaler to ensure uniform contribution to model training.
+3. Model Training: Comparison of three distinct algorithms:
+   * Linear Regression (Baseline).
+   * Random Forest Regressor (Ensemble learning).
+   * Gradient Boosting Regressor (Boosting technique).
 
-1. **Import Libraries**: Necessary libraries including numpy, pandas, matplotlib, seaborn, and scikit-learn components are imported.
+## Model Performance
+The models were evaluated using the R-squared ($R^2$) metric on the test set.
 
-2. **Load Data**: The California housing dataset is loaded and converted into a pandas DataFrame for easier manipulation.
+| Model | Hyperparameters | R2 Score |
+| :--- | :--- | :--- |
+| Linear Regression | Default | 0.594 |
+| Random Forest | n_estimators=400, random_state=0 | 0.801 |
+| Gradient Boosting | n_estimators=400, learning_rate=0.1 | 0.821 |
 
-3. **Data Exploration**: Basic exploration of the dataset including viewing the first few rows and checking correlations between features.
-
-4. **Data Visualization**: A heatmap is created to visualize correlations between different features in the dataset.
-
-5. **Data Preprocessing**: 
-   - Independent and dependent variables are separated
-   - Data is standardized using StandardScaler
-   - Data is split into training and testing sets (80/20 split)
-
-6. **Model Training**: A Linear Regression model is trained on the standardized training data.
-
-7. **Model Evaluation**: Predictions are made on the test set, and the model's performance is evaluated using R² score.
-
-## Results
-The initial Linear Regression model achieved an R² score of **0.59** (59% accuracy) on the test set. While this provides a baseline performance, there is significant room for improvement.
-
-## Next Steps
-I plan to improve the model's performance by:
-- Trying more sophisticated regression models
-- Performing feature engineering to create more informative features
-- Tuning hyperparameters of the models
-- Exploring different data preprocessing techniques
-- Potentially using neural networks for this regression task
-
-## Requirements
-To run this project, you'll need:
-- Python 3.x
-- Jupyter Notebook
-- Libraries: numpy, pandas, matplotlib, seaborn, scikit-learn
-
-## Author
-Salaheddine Boumazough
+## Installation
+Ensure you have Python installed, then install the required dependencies:
+```bash
+pip install -r requirements.txt
